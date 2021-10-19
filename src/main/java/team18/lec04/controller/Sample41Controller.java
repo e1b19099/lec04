@@ -68,16 +68,19 @@ public class Sample41Controller {
    *         このメソッドが開始するとトランザクションが開始され，メソッドが正常に終了するとDBへのアクセスが確定する（Runtime
    *         errorなどで止まった場合はロールバックが行われる）
    */
-  /*
-   * @PostMapping("step3")
-   *
-   * @Transactional public String sample43(@RequestParam Integer number, ModelMap
-   * model, Principal prin) { String loginUser = prin.getName(); // ログインユーザ情報
-   * Chamber chamber3 = new Chamber(); chamber3.setNumber(number);
-   * chamber3.setUser(loginUser); chamberMapper.insertChamber(chamber3);
-   * model.addAttribute("chamber3", chamber3); // System.out.println("ID:" +
-   * chamber3.getId()); return "sample41.html"; }
-   */
+
+  @PostMapping("step3")
+  @Transactional
+  public String sample43(@RequestParam Integer number, ModelMap model, Principal prin) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    Chamber chamber3 = new Chamber();
+    chamber3.setNumber(number);
+    chamber3.setUser(loginUser);
+    chamberMapper.insertChamber(chamber3);
+    model.addAttribute("chamber3", chamber3);
+    System.out.println("ID:" + chamber3.getId());
+    return "sample41.html";
+  }
 
   /*
    * @PostMapping("step5") public String sample45(@RequestParam Integer number,
