@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//import team18.lec04.model.Chamber;
-//import team18.lec04.model.ChamberMapper;
+import team18.lec04.model.Chamber;
+import team18.lec04.model.ChamberMapper;
 //import team18.lec04.model.ChamberUser;
 //import team18.lec04.model.UserInfo;
 
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Sample41Controller {
 
   @Autowired
-  // ChamberMapper chamberMapper;
+  ChamberMapper chamberMapper;
 
   @GetMapping("step1")
   public String sample41() {
@@ -50,13 +50,13 @@ public class Sample41Controller {
    * @param model
    * @return
    */
-  /*
-   * @GetMapping("step2/{id}") public String sample42(@PathVariable Integer id,
-   * ModelMap model) { Chamber chamber2 = chamberMapper.selectById(id);
-   * model.addAttribute("chamber2", chamber2);
-   * 
-   * return "sample41.html"; }
-   */
+  @GetMapping("step2/{id}")
+  public String sample42(@PathVariable Integer id, ModelMap model) {
+    Chamber chamber2 = chamberMapper.selectById(id);
+    model.addAttribute("chamber2", chamber2);
+
+    return "sample41.html";
+  }
 
   /**
    *
@@ -70,7 +70,7 @@ public class Sample41Controller {
    */
   /*
    * @PostMapping("step3")
-   * 
+   *
    * @Transactional public String sample43(@RequestParam Integer number, ModelMap
    * model, Principal prin) { String loginUser = prin.getName(); // ログインユーザ情報
    * Chamber chamber3 = new Chamber(); chamber3.setNumber(number);
@@ -88,7 +88,7 @@ public class Sample41Controller {
 
   /*
    * @GetMapping("step7")
-   * 
+   *
    * @Transactional public String sample47(ModelMap model) {
    * ArrayList<ChamberUser> chamberUsers7 = chamberMapper.selectAllChamberUser();
    * model.addAttribute("chamberUsers7", chamberUsers7); return "sample46.html"; }
@@ -96,7 +96,7 @@ public class Sample41Controller {
 
   /*
    * @PostMapping("step8")
-   * 
+   *
    * @Transactional public String sample48(@RequestParam Double height, ModelMap
    * model, Principal prin) { String loginUser = prin.getName(); // ログインユーザ情報
    * UserInfo ui = new UserInfo(); ui.setUser(loginUser); ui.setHeight(height);
